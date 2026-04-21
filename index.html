@@ -52,12 +52,14 @@
   <main>
     <div class="filters-row">
       <div class="filters">
-        <button class="filter-btn active" data-cat="all">All</button>
-        <button class="filter-btn" data-cat="fiction">Fiction</button>
-        <button class="filter-btn" data-cat="non-fiction">Non-Fiction</button>
-        <button class="filter-btn" data-cat="sci-fi">Sci-Fi</button>
-        <button class="filter-btn" data-cat="mystery">Mystery</button>
-        <button class="filter-btn" data-cat="biography">Biography</button>
+        <select id="categorySelect" class="category-select">
+          <option value="all">All Categories</option>
+          <option value="fiction">Fiction</option>
+          <option value="non-fiction">Non-Fiction</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="mystery">Mystery</option>
+          <option value="biography">Biography</option>
+        </select>
       </div>
       <div class="view-toggle">
         <button class="view-btn active" id="gridViewBtn" title="Grid view">

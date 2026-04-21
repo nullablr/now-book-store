@@ -287,14 +287,10 @@ document.getElementById('cartOverlay').addEventListener('click', closeCart);
 document.getElementById('gridViewBtn').addEventListener('click', () => setView('grid'));
 document.getElementById('carouselViewBtn').addEventListener('click', () => setView('carousel'));
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('.filter-btn.active').classList.remove('active');
-    btn.classList.add('active');
-    activeCategory = btn.dataset.cat;
-    if (viewMode === 'grid') renderBooks();
-    else { carouselIndex = 0; renderCarousel(); }
-  });
+document.getElementById('categorySelect').addEventListener('change', e => {
+  activeCategory = e.target.value;
+  if (viewMode === 'grid') renderBooks();
+  else { carouselIndex = 0; renderCarousel(); }
 });
 
 let searchTimer;
