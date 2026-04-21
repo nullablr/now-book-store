@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users — Admin — Now Book Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">Now Book Store</a>
+      <div class="header-right">
+        <span class="admin-badge">Admin</span>
+        <span class="user-greeting" id="adminName" hidden></span>
+        <button class="btn-bare" id="logoutBtn" hidden>Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="admin-tabs" id="adminTabs" hidden>
+    <a href="admin.html"        class="admin-tab">Promo Codes</a>
+    <a href="admin-orders.html" class="admin-tab">Orders</a>
+    <a href="admin-users.html"  class="admin-tab active">Users</a>
+  </nav>
+
+  <!-- Login guard -->
+  <div class="admin-login-wrap" id="loginScreen">
+    <div class="admin-login-card">
+      <div class="admin-lock-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h1>Admin Login</h1>
+      <p class="admin-login-sub">Sign in with your admin account.</p>
+      <form id="loginForm" autocomplete="off">
+        <input type="email"    id="adminEmail"    placeholder="Email"    class="admin-input" />
+        <input type="password" id="adminPassword" placeholder="Password" class="admin-input" style="margin-top:10px" />
+        <p class="login-error" id="loginError"></p>
+        <button type="submit" class="checkout-btn">Sign In</button>
+      </form>
+      <p class="admin-login-hint">Default: <code>admin@nowbookstore.com</code> / <code>admin123</code></p>
+    </div>
+  </div>
+
+  <main class="admin-page" id="adminDashboard" hidden>
+
+    <div class="admin-page-header">
+      <h1 class="admin-page-title">Users</h1>
+      <div class="admin-toolbar">
+        <input type="text" id="userSearch" placeholder="Search by name or email…" class="admin-search" />
+        <select id="userFilter" class="admin-select">
+          <option value="all">All roles</option>
+          <option value="user">Users</option>
+          <option value="admin">Admins</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="admin-stats" id="adminStats"></div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th><th>Email</th><th>Role</th>
+            <th>Orders</th><th>Joined</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody"></tbody>
+      </table>
+      <p class="admin-empty" id="adminEmpty" hidden>No users found.</p>
+    </div>
+  </main>
+
+  <!-- Edit Role Modal -->
+  <div class="modal-overlay" id="editRoleModal" hidden>
+    <div class="modal admin-modal">
+      <div class="admin-modal-header">
+        <h2>Change Role</h2>
+        <button class="close-cart" id="closeRoleModal">&times;</button>
+      </div>
+      <form id="editRoleForm">
+        <input type="hidden" id="editUserId" />
+        <div class="form-field" style="padding-bottom:16px">
+          <label>User</label>
+          <p id="editUserName" style="font-weight:700;padding:8px 0 0;font-size:.95rem"></p>
+        </div>
+        <div class="form-field toggle-field" style="border-top:1px solid var(--border)">
+          <span>Admin access</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="editRoleAdmin" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <p class="form-error" id="roleError"></p>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-outline" id="cancelRoleModal" style="padding:10px 20px;">Cancel</button>
+          <button type="submit" class="checkout-btn" style="width:auto;padding:10px 24px;">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete User Modal -->
+  <div class="modal-overlay" id="deleteUserModal" hidden>
+    <div class="modal" style="max-width:340px">
+      <h2>Delete User?</h2>
+      <p>This will permanently delete <strong id="deleteUserName"></strong> and cannot be undone.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px">
+        <button class="btn-outline" id="cancelDeleteUser" style="padding:10px 20px;">Cancel</button>
+        <button class="checkout-btn" id="confirmDeleteUser" style="width:auto;padding:10px 24px;">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Now Book Store &mdash; <a href="index.html">Back to Shop</a></p>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="admin-users.js"></script>
+</body>
+</html>

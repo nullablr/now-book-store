@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Now Book Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">Now Book Store</a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Shop</a>
+        <a href="orders.html" class="nav-link">My Orders</a>
+        <div id="userNav"></div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="login-page-wrap">
+    <div class="login-card">
+
+      <!-- Tabs -->
+      <div class="login-tabs">
+        <button class="login-tab active" data-tab="signin">Sign In</button>
+        <button class="login-tab" data-tab="register">Create Account</button>
+      </div>
+
+      <!-- Sign In -->
+      <form id="signinForm" class="login-form" autocomplete="off">
+        <div class="form-group">
+          <label for="siEmail">Email</label>
+          <input type="email" id="siEmail" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="siPassword">Password</label>
+          <input type="password" id="siPassword" placeholder="Your password" required />
+        </div>
+        <p class="auth-error" id="siError"></p>
+        <button type="submit" class="checkout-btn">Sign In</button>
+        <p class="auth-switch">No account? <a href="#" data-switch="register">Create one</a></p>
+      </form>
+
+      <!-- Register -->
+      <form id="registerForm" class="login-form" hidden autocomplete="off">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
+        </div>
+        <div class="form-group">
+          <label for="regConfirm">Confirm Password</label>
+          <input type="password" id="regConfirm" placeholder="Repeat password" required />
+        </div>
+        <p class="auth-error" id="regError"></p>
+        <button type="submit" class="checkout-btn">Create Account</button>
+        <p class="auth-switch">Already have an account? <a href="#" data-switch="signin">Sign in</a></p>
+      </form>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Now Book Store &mdash; Made with love for readers &mdash; <a href="admin.html">Admin</a></p>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

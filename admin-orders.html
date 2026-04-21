@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders — Admin — Now Book Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">Now Book Store</a>
+      <div class="header-right">
+        <span class="admin-badge">Admin</span>
+        <span class="user-greeting" id="adminName" hidden></span>
+        <button class="btn-bare" id="logoutBtn" hidden>Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="admin-tabs" id="adminTabs" hidden>
+    <a href="admin.html"        class="admin-tab">Promo Codes</a>
+    <a href="admin-orders.html" class="admin-tab active">Orders</a>
+    <a href="admin-users.html"  class="admin-tab">Users</a>
+  </nav>
+
+  <!-- Login guard -->
+  <div class="admin-login-wrap" id="loginScreen">
+    <div class="admin-login-card">
+      <div class="admin-lock-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h1>Admin Login</h1>
+      <p class="admin-login-sub">Sign in with your admin account.</p>
+      <form id="loginForm" autocomplete="off">
+        <input type="email"    id="adminEmail"    placeholder="Email"    class="admin-input" />
+        <input type="password" id="adminPassword" placeholder="Password" class="admin-input" style="margin-top:10px" />
+        <p class="login-error" id="loginError"></p>
+        <button type="submit" class="checkout-btn">Sign In</button>
+      </form>
+      <p class="admin-login-hint">Default: <code>admin@nowbookstore.com</code> / <code>admin123</code></p>
+    </div>
+  </div>
+
+  <main class="admin-page" id="adminDashboard" hidden>
+
+    <div class="admin-page-header">
+      <h1 class="admin-page-title">Orders</h1>
+      <div class="admin-toolbar">
+        <input type="text" id="orderSearch" placeholder="Search by order ID or customer…" class="admin-search" />
+        <select id="orderFilter" class="admin-select">
+          <option value="all">All orders</option>
+          <option value="account">With account</option>
+          <option value="guest">Guest</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="admin-stats" id="adminStats"></div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="ordersTable">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Promo</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody"></tbody>
+      </table>
+      <p class="admin-empty" id="adminEmpty" hidden>No orders yet.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Now Book Store &mdash; <a href="index.html">Back to Shop</a></p>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="admin-orders.js"></script>
+</body>
+</html>

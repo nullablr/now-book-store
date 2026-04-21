@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Now Book Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">Now Book Store</a>
+      <div class="header-right">
+        <span class="admin-badge">Admin</span>
+        <span class="user-greeting" id="adminName" hidden></span>
+        <button class="btn-bare" id="logoutBtn" hidden>Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Tab Nav (shown when logged in) -->
+  <nav class="admin-tabs" id="adminTabs" hidden>
+    <a href="admin.html"       class="admin-tab active">Promo Codes</a>
+    <a href="admin-orders.html" class="admin-tab">Orders</a>
+    <a href="admin-users.html"  class="admin-tab">Users</a>
+  </nav>
+
+  <!-- ── Login Screen ── -->
+  <div class="admin-login-wrap" id="loginScreen">
+    <div class="admin-login-card">
+      <div class="admin-lock-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h1>Admin Login</h1>
+      <p class="admin-login-sub">Sign in with your admin account.</p>
+      <form id="loginForm" autocomplete="off">
+        <input type="email"    id="adminEmail"    placeholder="Email"    class="admin-input" />
+        <input type="password" id="adminPassword" placeholder="Password" class="admin-input" style="margin-top:10px" />
+        <p class="login-error" id="loginError"></p>
+        <button type="submit" class="checkout-btn">Sign In</button>
+      </form>
+      <p class="admin-login-hint">Default: <code>admin@nowbookstore.com</code> / <code>admin123</code></p>
+    </div>
+  </div>
+
+  <!-- ── Admin Dashboard ── -->
+  <main class="admin-page" id="adminDashboard" hidden>
+
+    <div class="admin-page-header">
+      <div>
+        <h1 class="admin-page-title">Promo Codes</h1>
+      </div>
+      <button class="checkout-btn" id="addPromoBtn" style="width:auto;padding:10px 22px;">+ New Promo Code</button>
+    </div>
+
+    <div class="admin-stats" id="adminStats"></div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="promoTable">
+        <thead>
+          <tr>
+            <th>Code</th><th>Discount</th><th>Status</th>
+            <th>Uses</th><th>Max Uses</th><th>Expires</th><th>Created</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="promoTableBody"></tbody>
+      </table>
+      <p class="admin-empty" id="adminEmpty" hidden>No promo codes yet. Click "+ New Promo Code" to create one.</p>
+    </div>
+  </main>
+
+  <!-- Add / Edit Modal -->
+  <div class="modal-overlay" id="promoModal" hidden>
+    <div class="modal admin-modal">
+      <div class="admin-modal-header">
+        <h2 id="modalTitle">New Promo Code</h2>
+        <button class="close-cart" id="closeModal">&times;</button>
+      </div>
+      <form id="promoForm" autocomplete="off">
+        <input type="hidden" id="editIndex" value="" />
+        <div class="form-field">
+          <label for="fCode">Code <span class="req">*</span></label>
+          <input type="text" id="fCode" placeholder="e.g. SUMMER25" maxlength="20" />
+          <p class="field-hint">Letters and numbers only, will be uppercased.</p>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fDiscount">Discount % <span class="req">*</span></label>
+            <input type="number" id="fDiscount" min="1" max="99" placeholder="10" />
+          </div>
+          <div class="form-field">
+            <label for="fMaxUses">Max Uses</label>
+            <input type="number" id="fMaxUses" min="1" placeholder="Unlimited" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="fExpires">Expiry Date</label>
+          <input type="date" id="fExpires" />
+        </div>
+        <div class="form-field toggle-field">
+          <span>Active</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="fActive" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <p class="form-error" id="formError"></p>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-outline" id="cancelModal" style="padding:10px 20px;">Cancel</button>
+          <button type="submit" class="checkout-btn" style="width:auto;padding:10px 24px;">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay" id="deleteModal" hidden>
+    <div class="modal" style="max-width:340px">
+      <h2>Delete Promo?</h2>
+      <p>Are you sure you want to delete <strong id="deleteCodeName"></strong>? This cannot be undone.</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px">
+        <button class="btn-outline" id="cancelDelete" style="padding:10px 20px;">Cancel</button>
+        <button class="checkout-btn" id="confirmDelete" style="width:auto;padding:10px 24px;">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Now Book Store &mdash; <a href="index.html">Back to Shop</a></p>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
