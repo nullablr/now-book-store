@@ -1340,11 +1340,20 @@ footer a:hover { color: var(--sn-green); }
 @media (max-width: 860px) {
   .cart-layout { grid-template-columns: 1fr; }
   .cart-summary { position: static; }
-  .cp-item { grid-template-columns: 60px 1fr 32px; grid-template-rows: auto auto auto; row-gap: 8px; }
-  .cp-item-qty  { grid-column: 2; }
-  .cp-item-line { grid-column: 2; font-size: .9rem; }
-  .cp-remove    { grid-column: 3; grid-row: 1; justify-self: end; align-self: start; }
   .cart-items-header { display: none; }
+
+  /* 3-col grid: cover | info+controls | remove */
+  .cp-item {
+    grid-template-columns: 76px 1fr auto;
+    grid-template-rows: auto auto auto;
+    row-gap: 6px; column-gap: 14px;
+    padding: 16px;
+  }
+  .cp-item-cover { grid-column: 1; grid-row: 1 / 4; width: 76px; height: 100px; }
+  .cp-item-info  { grid-column: 2; grid-row: 1; }
+  .cp-item-qty   { grid-column: 2; grid-row: 2; }
+  .cp-item-line  { grid-column: 2; grid-row: 3; font-size: .9rem; }
+  .cp-remove     { grid-column: 3; grid-row: 1; align-self: start; }
 }
 
 /* ── 768px: admin toolbar / detail ── */
@@ -1423,6 +1432,21 @@ footer a:hover { color: var(--sn-green); }
 
   /* Cart page */
   .cart-page-title { font-size: 1.5rem; margin-bottom: 20px; }
+  .cp-item {
+    grid-template-columns: 64px 1fr auto;
+    column-gap: 12px; padding: 14px 0;
+  }
+  .cp-item-cover { width: 64px; height: 86px; }
+  .cp-item-title { font-size: .88rem; }
+  .cp-item-unit  { font-size: .74rem; }
+  .cart-summary  { padding: 20px; border-radius: var(--radius); }
+  .summary-total { font-size: 1rem; }
+  .checkout-btn  { font-size: .95rem; padding: 13px; }
+  .promo-row input { font-size: .82rem; padding: 8px 12px; }
+
+  /* Payment modal full-width on mobile */
+  .payment-modal { padding: 22px 18px 20px; }
+  .modal { width: calc(100% - 24px); margin: 12px; max-height: calc(100dvh - 24px); overflow-y: auto; }
 
   /* Touch targets */
   .filter-btn { min-height: 40px; }
@@ -1448,7 +1472,6 @@ footer a:hover { color: var(--sn-green); }
   .order-card-footer  { padding: 10px 16px; }
   .order-item-price   { font-size: .82rem; }
 
-  .cart-summary  { padding: 20px; }
   .login-form    { padding: 20px; }
   .admin-login-card { padding: 36px 24px; }
 
